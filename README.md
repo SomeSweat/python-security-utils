@@ -7,6 +7,6 @@ Have fun reading through my awful code im probably going to come back to this at
 My maxlist.py just finds the highest number in a random generated list from 1-100000 based on user input.
 The s.py file is a grade average calculator that rounds the average to the last 2 decimal points(eg. 2.55).
 And my newest project which is the todo.py is just a todo list where you can add, view and remove tasks.
-As of right now i am working on an expense tracker after which i will actually turn the code into usable apps not just terminal/cmd usage.
+As of right now i am working on an expense tracker after which i will actually turn the code into usable apps not just terminal/cmd usage. Or i might start working on a new repo depends on where the wind will take me.
 
 print("Hello World")
