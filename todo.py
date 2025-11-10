@@ -13,7 +13,7 @@ while True:
 
     if choice == "1":
         if not tasks:
-            print("add a task fuckwit!", flush=True)
+            print("No tasks found.", flush=True)
         else:
             print("\nYour tasks:")
             for i, task in enumerate(tasks, start=1):
@@ -26,30 +26,31 @@ while True:
 
     elif choice == "3":
         if not tasks:
-            print("bro you ain't got no tasks debil")
+            print("No tasks found.")
         else:
             print("\nYour tasks:")
             for i, task in enumerate(tasks, start=1):
                 print(f"{i}. {task}")
 
             try:
-                index = int(input("yo what index you trynna remove: ")) - 1
+                index = int(input("Which index would you like to remove: ")) - 1
                 if 0 <= index < len(tasks):
                     removed = tasks.pop(index)
                     print(f"Removed: {removed}")
                 else:
-                    print("yo you aint got no task there")
+                    print("No tasks found at this index.")
 
             except ValueError:
-                print("a number that you have in your tasks dawg")
+                print("Invalid number.")
 
 
     elif choice == "4":
-        print("Lock in twin the world isn't slowing down for you")
+        print("Goodbye!")
         break
 
     else:
         print("Invalid choice, try again.")
+
 
 
 
