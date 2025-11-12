@@ -1,61 +1,46 @@
+import tkinter as tk
+import customtkinter as ctk
+#importing both because of problems down the line
+ctk.set_appearance_mode("System")  
+ctk.set_default_color_theme("blue") 
 
-tasks = [] # storing data
- 
-while True:
-    print("\n--- To-Do list ---")
-    print("1. View tasks")
-    print("2. Add task")
-    print("3. Remove task")
-    print("4. Quit")
+tasks = []
+#redid the code but with tkinter 
+def view_tasks():
+    listbox.delete(0, tk.END)
+    for i, task in enumerate(tasks, start=1):
+        listbox.insert(tk.END, f"{i}. {task}")
 
+def add_task():
+    task = entry.get()
+    if task:
+        tasks.append(task)
+        entry.delete(0, tk.END)
+        view_tasks()
 
-    choice = input("Choose an option (1-4): ")
+def remove_task():
+    selected = listbox.curselection()
+    if selected:
+        index = selected[0]
+        tasks.pop(index)
+        view_tasks()
 
-    if choice == "1":
-        if not tasks:
-            print("No tasks found.", flush=True)
-        else:
-            print("\nYour tasks:")
-            for i, task in enumerate(tasks, start=1):
-                print(f"{i}. {task}")
-    
-    elif choice == "2":
-        new_task = input("Enter a new task: ")
-        tasks.append(new_task)
-        print(f"Task added: {new_task}")
+#custom GUI for the app itself
+app = ctk.CTk()
+app.title("Modern To-Do List")
 
-    elif choice == "3":
-        if not tasks:
-            print("No tasks found.")
-        else:
-            print("\nYour tasks:")
-            for i, task in enumerate(tasks, start=1):
-                print(f"{i}. {task}")
+frame = ctk.CTkFrame(app)
+frame.pack(padx=10, pady=10)
 
-            try:
-                index = int(input("Which index would you like to remove: ")) - 1
-                if 0 <= index < len(tasks):
-                    removed = tasks.pop(index)
-                    print(f"Removed: {removed}")
-                else:
-                    print("No tasks found at this index.")
+entry = ctk.CTkEntry(frame, width=250, placeholder_text="Enter a task...")
+entry.pack(side="left", padx=5)
 
-            except ValueError:
-                print("Invalid number.")
+add_btn = ctk.CTkButton(frame, text="Add", command=add_task)
+add_btn.pack(side="left", padx=5)
 
+remove_btn = ctk.CTkButton(frame, text="Remove", command=remove_task)
+remove_btn.pack(side="left", padx=5)
 
-    elif choice == "4":
-        print("Goodbye!")
-        break
-
-    else:
-        print("Invalid choice, try again.")
-
-
-
-
-
-
-
-
-
+#used normal listbox as custom tkinter doesnt have its own
+listbox = tk.Listbox(app, width=40, height=10)
+listbox.pack(padx=10, pady=10)
